@@ -37,3 +37,6 @@ document.getElementById("langages").insertAdjacentHTML("beforebegin", '<p class=
 document.getElementById("langages").insertAdjacentHTML("afterbegin", '<li id="javascript">Javascript ** after begin **</li>');
 document.getElementById("langages").insertAdjacentHTML("beforeend", '<li id="html">HTML mais ce nest pas de la programmation ** before end **</li>');
 document.getElementById("langages").insertAdjacentHTML("afterend", '<p class="paragrapheBeforeUl">lorem ipsum ** after end ** pussum lilum</p>');
+
+// exo - ajout d'un paragraphe contenant un lien après la liste des langages
+document.getElementById("langages").insertAdjacentHTML("afterend", '<p>En voici une <a href="https://fr.wikipedia.org/wiki/Liste_des_langages_de_programmation">liste</a> plus complète</p>');
