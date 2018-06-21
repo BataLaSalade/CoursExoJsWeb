@@ -40,42 +40,42 @@ Les bonnes pratiques doivent être respectees :
 ----- decomposition -----
 div "contenu"
 |----- div "container" ou "lien"
-|    |---- a
-|    |    |----- span  "titre"
-|    |    |----- "url"
-|    |---- p "auteur"
+    |---- a "titre"
+    |----- span  "url"
+    |---- p "auteur"
 */
 
-// creation et modification du conteneur
-var containerElt = document.createElement("div");
-containerElt.classList.add("lien");
-// width 100 % ?
+//création d'une fonction qui parcours le tableau et qui crée une div contenant le titre, l'url et l'auteur du lien pour chaque element du tableau
 
-// creation et modification des titres du lien
-var titleElts = document.createElement("a");
-titleElts.style.fontWeight = "bold";
-titleElts.style.fontSize = "1.2rem";
-titleElts.style.color = "#428bca";
-titleElts.style.textDecoration = "none";
-titleElts.href = listeLiens[0].url;
-titleElts.textContent = listeLiens[0].titre + " ";
-
-var spanElts = document.createElement("span"); // pour l'url du lien
-spanElts.textContent = listeLiens[0].url;
-
-// creation et modification des auteurs du lien
-var authorElts = document.createElement("p");
-authorElts.style.fontSize = "80%";
-authorElts.textContent = "Ajouté par " + listeLiens[0].auteur;
-
-// insersion dans le DOM
-document.getElementById("contenu").appendChild(containerElt);
-containerElt.appendChild(titleElts);
-//document.getElementsByTagName("a").insertBefore(spanElts, titleElts)
-containerElt.appendChild(spanElts);
-containerElt.appendChild(authorElts);
-
-
-
-
-
+function addLink() {
+    listeLiens.forEach(function(lien){
+        // creation et modification du conteneur
+        var containerElt = document.createElement("div");
+        containerElt.classList.add("lien");
+        // creation et modification des titres du lien
+        var titleElts = document.createElement("a");
+        titleElts.style.fontWeight = "bold";
+        titleElts.style.fontSize = "1.2rem";
+        titleElts.style.color = "#428bca";
+        titleElts.style.textDecoration = "none";
+        titleElts.style.lineHeight = "0.3rem"
+        titleElts.href = lien.url;
+        titleElts.textContent = lien.titre + " ";
+        var spanElts = document.createElement("span"); // pour l'url du lien
+        spanElts.textContent = lien.url;
+        spanElts.style.lineHeight = "0.3rem"
+        spanElts.style.fontSize = "0.9rem";
+        // creation et modification des auteurs du lien
+        var authorElts = document.createElement("p");
+        authorElts.style.fontSize = "0.9rem";
+        authorElts.style.lineHeight = "0.3rem";
+        authorElts.style.marginBottom = "5px";
+        authorElts.textContent = "Ajouté par " + lien.auteur;
+        // insersion dans le DOM
+        document.getElementById("contenu").appendChild(containerElt);
+        containerElt.appendChild(titleElts);
+        containerElt.appendChild(spanElts);
+        containerElt.appendChild(authorElts);
+    });
+}
+addLink();
