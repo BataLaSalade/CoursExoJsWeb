@@ -60,6 +60,7 @@ function addLink() {
         titleElts.style.textDecoration = "none";
         titleElts.style.lineHeight = "0.3rem"
         titleElts.href = lien.url;
+        titleElts.setAttribute("target", "blank")
         titleElts.textContent = lien.titre + " ";
         var spanElts = document.createElement("span"); // pour l'url du lien
         spanElts.textContent = lien.url;
