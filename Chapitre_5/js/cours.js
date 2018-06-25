@@ -1,3 +1,4 @@
+// ----- COURS SUR La gestion des evenements -----
 function clic(){
     console.log("Clic !");
 }
