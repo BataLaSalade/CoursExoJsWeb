@@ -105,11 +105,11 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
     btnAdd.setAttribute("value", "Ajouter");
     
     // insersion dans le parent et affichage
-    document.getElementById("divAddLink").appendChild(form);
     form.appendChild(inputAuthor);
     form.appendChild(inputTitle);
     form.appendChild(inputUrl);
     form.appendChild(btnAdd);
+    document.getElementById("divAddLink").appendChild(form);
 
     // gestion de l'événement apres le click sur le btn "Ajouter"
     document.getElementById("btnAdd").addEventListener("click", function(){
