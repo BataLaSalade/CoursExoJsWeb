@@ -124,20 +124,14 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         newLien.init(userInputAuthor, userInputTitle, userInputUrl);
         listeLiens.push(newLien);
         console.log(listeLiens);
-        console.log(userInputAuthor);
-        console.log(userInputTitle);
-        console.log(userInputUrl);*/
+        */
     });
 
 });
-console.log(userInputAuthor);
-console.log(userInputTitle);
-console.log(userInputUrl);
 
 
-/*var newLien = Object.create(Lien);
-newLien.init(document.getElementById("inputAuthor").input, document.getElementById("inputTitle").value, document.getElementById("inputUrl").value);
-listeLiens.push(newLien);*/
+
+
 
 
 //création d'une fonction qui parcours le tableau et qui crée une div contenant le titre, l'url et l'auteur du lien pour chaque element du tableau
