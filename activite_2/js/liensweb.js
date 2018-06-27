@@ -44,6 +44,59 @@ div "contenu"
     |----- span  "url"
     |---- p "auteur"
 */
+//Création d'une div pour gérer l'ajout d'un lien par l'utilisateur
+var divAddLink = document.createElement("div");
+divAddLink.style.marginBottom = "15px";
+divAddLink.id = "divAddLink";
+var btnAddLink = document.createElement("button");
+btnAddLink.id = "btnAddLink";
+btnAddLink.textContent = "Ajouter un lien";
+// Ajout du bouton dans la div
+divAddLink.appendChild(btnAddLink);
+document.body.insertBefore(divAddLink, document.getElementById("contenu"));
+
+// gestion de l'événement click sur "Ajouter un lien"
+document.getElementById("btnAddLink").addEventListener("click", function(e){
+    console.log("L'utilisateur veut ajouter un lien");
+    //disparition du bouton
+    document.getElementById("btnAddLink").style.display = "none";
+    // créer les champs de saisi
+    var inputAuthor = document.createElement("input");
+    inputAuthor.id = "inputAuthor";
+    inputAuthor.setAttribute("name", "inputAuthor");
+    inputAuthor.setAttribute("placeholder", "Entrez votre nom");
+    inputAuthor.style.marginRight = "0.8rem";
+    
+    var inputTitle = document.createElement("input");
+    inputTitle.id = "inputTitle";
+    inputTitle.setAttribute("name", "inputTitle");
+    inputTitle.setAttribute("placeholder", "Entrez le titre du lien");
+    inputTitle.style.marginRight = "0.8rem";
+    
+    var inputUrl = document.createElement("input");
+    inputUrl.id = "inputURL";
+    inputUrl.setAttribute("name","inputURL");
+    inputUrl.setAttribute("type", "url");
+    inputUrl.setAttribute("placeholder","Entrez l'URL du lien");
+    inputUrl.style.marginRight = "0.8rem";
+
+    var btnAdd = document.createElement("input");
+    btnAdd.id = "btnAdd";
+    btnAdd.setAttribute("type", "submit");
+    btnAdd.setAttribute("value", "Ajouter");
+    
+    // insersion dans le parent et affichage
+    document.getElementById("divAddLink").appendChild(inputAuthor);
+    document.getElementById("divAddLink").appendChild(inputTitle);
+    document.getElementById("divAddLink").appendChild(inputUrl);
+    document.getElementById("divAddLink").appendChild(btnAdd);
+
+    // setting champ requis
+    
+
+
+});
+
 
 //création d'une fonction qui parcours le tableau et qui crée une div contenant le titre, l'url et l'auteur du lien pour chaque element du tableau
 
@@ -82,10 +135,7 @@ function addLink() {
         containerElt.appendChild(authorElt);
 
         // insersion dans le DOM
-        document.getElementById("contenu").appendChild(containerElt);
-        
-        
-        
+        document.getElementById("contenu").appendChild(containerElt); 
     });
 }
 addLink();
