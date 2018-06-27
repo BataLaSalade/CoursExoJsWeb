@@ -44,6 +44,16 @@ div "contenu"
     |----- span  "url"
     |---- p "auteur"
 */
+
+// creation du prototype "Lien" a partir duquel, on crée l'objet "lien" qui devra être ajouté au tableau ListeLien
+var Lien = {
+    init : function (author, title, url) {
+        this.author = author;
+        this.title = title;
+        this.url = url;        
+    }
+};
+
 //Création d'une div pour gérer l'ajout d'un lien par l'utilisateur
 var divAddLink = document.createElement("div");
 divAddLink.style.marginBottom = "15px";
@@ -55,11 +65,20 @@ btnAddLink.textContent = "Ajouter un lien";
 divAddLink.appendChild(btnAddLink);
 document.body.insertBefore(divAddLink, document.getElementById("contenu"));
 
+// test variable global
+var userInputAuthor = "";
+var userInputTitle = "";
+var userInputUrl = "";
+
 // gestion de l'événement click sur "Ajouter un lien"
-document.getElementById("btnAddLink").addEventListener("click", function(e){
+document.getElementById("btnAddLink").addEventListener("click", function(){
     console.log("L'utilisateur veut ajouter un lien");
     //disparition du bouton
     document.getElementById("btnAddLink").style.display = "none";
+
+    // création du formulaire
+    var form = document.createElement("form");
+
     // créer les champs de saisi
     var inputAuthor = document.createElement("input");
     inputAuthor.id = "inputAuthor";
@@ -86,16 +105,39 @@ document.getElementById("btnAddLink").addEventListener("click", function(e){
     btnAdd.setAttribute("value", "Ajouter");
     
     // insersion dans le parent et affichage
-    document.getElementById("divAddLink").appendChild(inputAuthor);
-    document.getElementById("divAddLink").appendChild(inputTitle);
-    document.getElementById("divAddLink").appendChild(inputUrl);
-    document.getElementById("divAddLink").appendChild(btnAdd);
+    document.getElementById("divAddLink").appendChild(form);
+    form.appendChild(inputAuthor);
+    form.appendChild(inputTitle);
+    form.appendChild(inputUrl);
+    form.appendChild(btnAdd);
 
-    // setting champ requis
-    
-
+    // gestion de l'événement apres le click sur le btn "Ajouter"
+    document.getElementById("btnAdd").addEventListener("click", function(){
+        console.log("l'utilisateur a fini d'ajouter son lien");
+        userInputAuthor = inputAuthor.value;
+        userInputTitle = inputTitle.value;
+        userInputUrl = inputUrl.value;
+        console.log(userInputAuthor);
+        console.log(userInputTitle);
+        console.log(userInputUrl);
+        /*var newLien = Object.create(Lien);
+        newLien.init(userInputAuthor, userInputTitle, userInputUrl);
+        listeLiens.push(newLien);
+        console.log(listeLiens);
+        console.log(userInputAuthor);
+        console.log(userInputTitle);
+        console.log(userInputUrl);*/
+    });
 
 });
+console.log(userInputAuthor);
+console.log(userInputTitle);
+console.log(userInputUrl);
+
+
+/*var newLien = Object.create(Lien);
+newLien.init(document.getElementById("inputAuthor").input, document.getElementById("inputTitle").value, document.getElementById("inputUrl").value);
+listeLiens.push(newLien);*/
 
 
 //création d'une fonction qui parcours le tableau et qui crée une div contenant le titre, l'url et l'auteur du lien pour chaque element du tableau
