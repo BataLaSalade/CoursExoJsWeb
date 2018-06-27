@@ -110,7 +110,7 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
     document.getElementById("divAddLink").appendChild(form);
 
     // gestion de l'événement apres le click sur le btn "Ajouter"
-    document.getElementById("btnAdd").addEventListener("click", function(){
+    form.addEventListener("submit", function(e){
         console.log("l'utilisateur a fini d'ajouter son lien");
         userInputAuthor = inputAuthor.value;
         userInputTitle = inputTitle.value;
@@ -163,6 +163,7 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
 
         // insersion dans le DOM en premiere position
         document.getElementById("contenu").insertBefore(containerElt, document.querySelector(".lien")); 
+        e.preventDefault();
     });
 
 });
