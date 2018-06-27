@@ -121,13 +121,12 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
 
         // création de l'objet newLink à partir du prototype Link
         var newLink = Object.create(Link);
-        newLink.titre = "userInputTitle";
-        newLink.url = "userInputUrl";
-        newLink.auteur = "userInpputAuthor";
+        newLink.titre = userInputTitle;
+        newLink.url = userInputUrl;
+        newLink.auteur = userInputAuthor;
         // envoie du nouveau lien dans le tableau listeLiens
         listeLiens.push(newLink);
         console.log(listeLiens);
-        addLink();
     });
 
 });
@@ -139,42 +138,40 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
 
 //création d'une fonction qui parcours le tableau et qui crée une div contenant le titre, l'url et l'auteur du lien pour chaque element du tableau
 
-function addLink() {
-    listeLiens.forEach(function(lien){
-        // creation et modification du conteneur
-        var containerElt = document.createElement("div");
-        containerElt.classList.add("lien");
+listeLiens.forEach(function(lien){
+    // creation et modification du conteneur
+    var containerElt = document.createElement("div");
+    containerElt.classList.add("lien");
 
-        // creation et modification des titres du lien
-        var titleElt = document.createElement("a");
-        titleElt.href = lien.url;
-        titleElt.textContent = lien.titre;
-        titleElt.setAttribute("target", "blank")
-        // ajout des styles sur l'element
-        titleElt.style.fontWeight = "bold";
-        titleElt.style.color = "#428bca";
-        titleElt.style.textDecoration = "none";
-        titleElt.style.marginRight = "5px";
-        // Insersion dans le parent
-        containerElt.appendChild(titleElt);
-        
-        // creation et modification de l'URL
-        var spanElt = document.createElement("span");
-        spanElt.textContent = lien.url;
-        // insertion dans le parent
-        containerElt.appendChild(spanElt);
+    // creation et modification des titres du lien
+    var titleElt = document.createElement("a");
+    titleElt.href = lien.url;
+    titleElt.textContent = lien.titre;
+    titleElt.setAttribute("target", "blank")
+    // ajout des styles sur l'element
+    titleElt.style.fontWeight = "bold";
+    titleElt.style.color = "#428bca";
+    titleElt.style.textDecoration = "none";
+    titleElt.style.marginRight = "5px";
+    // Insersion dans le parent
+    containerElt.appendChild(titleElt);
+    
+    // creation et modification de l'URL
+    var spanElt = document.createElement("span");
+    spanElt.textContent = lien.url;
+    // insertion dans le parent
+    containerElt.appendChild(spanElt);
 
-        // creation et modification des auteurs du lien
-        var authorElt = document.createElement("p");
-        var spanAuthorElt = document.createElement("span");
-        spanAuthorElt.textContent = "Ajouté par " + lien.auteur;
-        authorElt.style.marginBottom = "5px";
-        // insersion dans le parent
-        authorElt.appendChild(spanAuthorElt);
-        containerElt.appendChild(authorElt);
+    // creation et modification des auteurs du lien
+    var authorElt = document.createElement("p");
+    var spanAuthorElt = document.createElement("span");
+    spanAuthorElt.textContent = "Ajouté par " + lien.auteur;
+    authorElt.style.marginBottom = "5px";
+    // insersion dans le parent
+    authorElt.appendChild(spanAuthorElt);
+    containerElt.appendChild(authorElt);
 
-        // insersion dans le DOM
-        document.getElementById("contenu").appendChild(containerElt); 
-    });
-}
-addLink();
+    // insersion dans le DOM
+    document.getElementById("contenu").appendChild(containerElt); 
+});
+
