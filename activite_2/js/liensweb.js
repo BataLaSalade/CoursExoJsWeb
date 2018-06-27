@@ -99,7 +99,6 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
     inputUrl.required = true;
     inputUrl.setAttribute("type", "text");
     inputUrl.setAttribute("name","inputURL");
-    inputUrl.setAttribute("type", "url");
     inputUrl.setAttribute("placeholder","Entrez l'URL du lien");
     inputUrl.style.marginRight = "0.8rem";
 
@@ -125,6 +124,18 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         console.log(userInputTitle);
         console.log(userInputUrl);
 
+        //Contrôle du format de l'uRL en fin de saisie
+        inputUrl.addEventListener("blur", function(e){
+            //var regexUrl = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
+            var httpCheck = e.target.value.indexOf("http://");
+            var httpsCheck = e.target.value.indexOf("https://");
+            if (httpCheck == -1 || httpsCheck == -1){
+                console.log("URL invalide");
+                userInputUrl = "http://" + inputUrl.value;
+                console.log(userInputUrl);
+            };
+        });
+        console.log(userInputUrl);
         // création de l'objet newLink à partir du prototype Link
         var newLink = Object.create(Link);
         newLink.titre = userInputTitle;
