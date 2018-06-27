@@ -80,18 +80,24 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
     // créer les champs de saisi
     var inputAuthor = document.createElement("input");
     inputAuthor.id = "inputAuthor";
+    inputAuthor.required = true;
+    inputAuthor.setAttribute("type", "text");
     inputAuthor.setAttribute("name", "inputAuthor");
     inputAuthor.setAttribute("placeholder", "Entrez votre nom");
     inputAuthor.style.marginRight = "0.8rem";
     
     var inputTitle = document.createElement("input");
     inputTitle.id = "inputTitle";
+    inputTitle.required = true;
+    inputTitle.setAttribute("type", "text");
     inputTitle.setAttribute("name", "inputTitle");
     inputTitle.setAttribute("placeholder", "Entrez le titre du lien");
     inputTitle.style.marginRight = "0.8rem";
     
     var inputUrl = document.createElement("input");
     inputUrl.id = "inputURL";
+    inputUrl.required = true;
+    inputUrl.setAttribute("type", "text");
     inputUrl.setAttribute("name","inputURL");
     inputUrl.setAttribute("type", "url");
     inputUrl.setAttribute("placeholder","Entrez l'URL du lien");
