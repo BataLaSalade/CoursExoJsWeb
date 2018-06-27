@@ -52,31 +52,40 @@ function addLink() {
         // creation et modification du conteneur
         var containerElt = document.createElement("div");
         containerElt.classList.add("lien");
+
         // creation et modification des titres du lien
-        var titleElts = document.createElement("a");
-        titleElts.style.fontWeight = "bold";
-        titleElts.style.fontSize = "1.2rem";
-        titleElts.style.color = "#428bca";
-        titleElts.style.textDecoration = "none";
-        titleElts.style.lineHeight = "0.3rem"
-        titleElts.href = lien.url;
-        titleElts.setAttribute("target", "blank")
-        titleElts.textContent = lien.titre + " ";
-        var spanElts = document.createElement("span"); // pour l'url du lien
-        spanElts.textContent = lien.url;
-        spanElts.style.lineHeight = "0.3rem"
-        spanElts.style.fontSize = "0.9rem";
+        var titleElt = document.createElement("a");
+        titleElt.href = lien.url;
+        titleElt.textContent = lien.titre;
+        titleElt.setAttribute("target", "blank")
+        // ajout des styles sur l'element
+        titleElt.style.fontWeight = "bold";
+        titleElt.style.color = "#428bca";
+        titleElt.style.textDecoration = "none";
+        titleElt.style.marginRight = "5px";
+        // Insersion dans le parent
+        containerElt.appendChild(titleElt);
+        
+        // creation et modification de l'URL
+        var spanElt = document.createElement("span");
+        spanElt.textContent = lien.url;
+        // insertion dans le parent
+        containerElt.appendChild(spanElt);
+
         // creation et modification des auteurs du lien
-        var authorElts = document.createElement("p");
-        authorElts.style.fontSize = "0.9rem";
-        authorElts.style.lineHeight = "0.3rem";
-        authorElts.style.marginBottom = "5px";
-        authorElts.textContent = "Ajouté par " + lien.auteur;
+        var authorElt = document.createElement("p");
+        var spanAuthorElt = document.createElement("span");
+        spanAuthorElt.textContent = "Ajouté par " + lien.auteur;
+        authorElt.style.marginBottom = "5px";
+        // insersion dans le parent
+        authorElt.appendChild(spanAuthorElt);
+        containerElt.appendChild(authorElt);
+
         // insersion dans le DOM
         document.getElementById("contenu").appendChild(containerElt);
-        containerElt.appendChild(titleElts);
-        containerElt.appendChild(spanElts);
-        containerElt.appendChild(authorElts);
+        
+        
+        
     });
 }
 addLink();
