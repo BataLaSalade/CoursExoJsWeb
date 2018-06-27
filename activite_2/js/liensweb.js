@@ -46,12 +46,10 @@ div "contenu"
 */
 
 // creation du prototype "Lien" a partir duquel, on crée l'objet "lien" qui devra être ajouté au tableau ListeLien
-var Lien = {
-    init : function (author, title, url) {
-        this.author = author;
-        this.title = title;
-        this.url = url;        
-    }
+var Link = {
+    titre : "",
+    url : "",
+    auteur : ""
 };
 
 //Création d'une div pour gérer l'ajout d'un lien par l'utilisateur
@@ -120,11 +118,16 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         console.log(userInputAuthor);
         console.log(userInputTitle);
         console.log(userInputUrl);
-        /*var newLien = Object.create(Lien);
-        newLien.init(userInputAuthor, userInputTitle, userInputUrl);
-        listeLiens.push(newLien);
+
+        // création de l'objet newLink à partir du prototype Link
+        var newLink = Object.create(Link);
+        newLink.titre = "userInputTitle";
+        newLink.url = "userInputUrl";
+        newLink.auteur = "userInpputAuthor";
+        // envoie du nouveau lien dans le tableau listeLiens
+        listeLiens.push(newLink);
         console.log(listeLiens);
-        */
+        
     });
 
 });
