@@ -127,6 +127,42 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         // envoie du nouveau lien dans le tableau listeLiens
         listeLiens.push(newLink);
         console.log(listeLiens);
+
+        //instruction pour l'ajout du dernier lien du tableau
+        // creation et modification du conteneur
+        var containerElt = document.createElement("div");
+        containerElt.classList.add("lien");
+
+        // creation et modification des titres du lien
+        var titleElt = document.createElement("a");
+        titleElt.href = listeLiens[listeLiens.length-1].url;
+        titleElt.textContent = listeLiens[listeLiens.length-1].titre;
+        titleElt.setAttribute("target", "blank")
+        // ajout des styles sur l'element
+        titleElt.style.fontWeight = "bold";
+        titleElt.style.color = "#428bca";
+        titleElt.style.textDecoration = "none";
+        titleElt.style.marginRight = "5px";
+        // Insersion dans le parent
+        containerElt.appendChild(titleElt);
+        
+        // creation et modification de l'URL
+        var spanElt = document.createElement("span");
+        spanElt.textContent = listeLiens[listeLiens.length-1].url;
+        // insertion dans le parent
+        containerElt.appendChild(spanElt);
+
+        // creation et modification des auteurs du lien
+        var authorElt = document.createElement("p");
+        var spanAuthorElt = document.createElement("span");
+        spanAuthorElt.textContent = "Ajouté par " + listeLiens[listeLiens.length-1].auteur;
+        authorElt.style.marginBottom = "5px";
+        // insersion dans le parent
+        authorElt.appendChild(spanAuthorElt);
+        containerElt.appendChild(authorElt);
+
+        // insersion dans le DOM
+        document.getElementById("contenu").appendChild(containerElt); 
     });
 
 });
