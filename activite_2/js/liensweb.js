@@ -161,8 +161,8 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         authorElt.appendChild(spanAuthorElt);
         containerElt.appendChild(authorElt);
 
-        // insersion dans le DOM
-        document.getElementById("contenu").appendChild(containerElt); 
+        // insersion dans le DOM en premiere position
+        document.getElementById("contenu").insertBefore(containerElt, document.querySelector(".lien")); 
     });
 
 });
