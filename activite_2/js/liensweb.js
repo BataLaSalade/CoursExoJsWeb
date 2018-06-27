@@ -127,7 +127,7 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         // envoie du nouveau lien dans le tableau listeLiens
         listeLiens.push(newLink);
         console.log(listeLiens);
-        
+        addLink();
     });
 
 });
