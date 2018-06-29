@@ -26,23 +26,12 @@ var listeLiens = [
 
 // TODO : compléter ce fichier pour ajouter les liens à la page web
 /*
------ consignes -----
-Le titre de chaque lien est cliquable et envoie vers son URL
-La couleur à donner au titre d'un lien est #428bca
-Les fichiers liensweb.css et liensweb.html ne doivent pas etre modifies
-Les bonnes pratiques doivent être respectees :
-    les nouveaux elements du DOM doivent etre crees et modifies 
-    puis etre ajoutes à la page
-    les variables JS doivent respecter la norme camelCase et le fichier liensweb.js doit être correctement indenté
-*/
-
-/*
 ----- decomposition -----
 div "contenu"
 |----- div "container" ou "lien"
     |---- a "titre"
     |----- span  "url"
-    |---- p "auteur"
+    |---- p +  span "auteur"
 */
 
 // creation du prototype "Lien" a partir duquel, on crée l'objet "lien" qui devra être ajouté au tableau ListeLien
@@ -114,28 +103,30 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
     form.appendChild(btnAdd);
     document.getElementById("divAddLink").appendChild(form);
 
+    //Contrôle du format de l'uRL en fin de saisie
+    inputUrl.addEventListener("blur", function(){
+        //var regexUrl = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
+        var httpCheck = userInputUrl.indexOf("http://");
+        var httpsCheck = userInputUrl.indexOf("https://");
+        if (httpCheck == 0 || httpsCheck == 0){
+            console.log("URL valide");
+            console.log(userInputUrl);
+        } else {
+            userInputUrl = "http://" + inputUrl.value;
+            console.log(userInputUrl);
+        }
+    });
+    console.log(userInputUrl);
+
     // gestion de l'événement apres le click sur le btn "Ajouter"
     form.addEventListener("submit", function(e){
         console.log("l'utilisateur a fini d'ajouter son lien");
         userInputAuthor = inputAuthor.value;
         userInputTitle = inputTitle.value;
-        userInputUrl = inputUrl.value;
         console.log(userInputAuthor);
         console.log(userInputTitle);
         console.log(userInputUrl);
 
-        //Contrôle du format de l'uRL en fin de saisie
-        inputUrl.addEventListener("blur", function(e){
-            //var regexUrl = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
-            var httpCheck = e.target.value.indexOf("http://");
-            var httpsCheck = e.target.value.indexOf("https://");
-            if (httpCheck == -1 || httpsCheck == -1){
-                console.log("URL invalide");
-                userInputUrl = "http://" + inputUrl.value;
-                console.log(userInputUrl);
-            };
-        });
-        console.log(userInputUrl);
         // création de l'objet newLink à partir du prototype Link
         var newLink = Object.create(Link);
         newLink.titre = userInputTitle;
@@ -181,8 +172,14 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         // insersion dans le DOM en premiere position
         document.getElementById("contenu").insertBefore(containerElt, document.querySelector(".lien")); 
         e.preventDefault();
+        
+        //disparition du form
+        form.style.display = "none";
+        //        
+        
+        btnAddLink.style.display = "inline";
     });
-
+    
 });
 
 
