@@ -52,6 +52,23 @@ btnAddLink.textContent = "Ajouter un lien";
 divAddLink.appendChild(btnAddLink);
 document.body.insertBefore(divAddLink, document.getElementById("contenu"));
 
+// Ajout de l'encart pour l'affichage du message après l'ajout d'un lien
+var divMessage = document.createElement("div");
+divMessage.id = "divMessage";
+divMessage.style.marginBottom = "15px";
+divMessage.style.backgroundColor = "lightblue";
+divAddLink.insertBefore(divMessage,btnAddLink);
+// disparition de l'élément avant la validation
+divMessage.style.display = "none";
+
+// Ajout du message dans la div
+var message = document.createElement("p");
+message.id = "message";
+message.textContent = "Le lien \"" + listeLiens[listeLiens.length-1].titre  +  "\" a bien été ajouté.";
+message.style.color = "#428bca";
+message.style.padding = "15px";
+divMessage.appendChild(message);
+
 // test variable global
 var userInputAuthor = "";
 var userInputTitle = "";
@@ -117,6 +134,12 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
         }
     });
     console.log(userInputUrl);
+    // gestion de l'affichage du message
+    btnAdd.addEventListener("click", function(){
+        setTimeout(function (){
+            divMessage.style.display = "block";
+        }, 100);
+    });
 
     // gestion de l'événement apres le click sur le btn "Ajouter"
     form.addEventListener("submit", function(e){
@@ -171,18 +194,26 @@ document.getElementById("btnAddLink").addEventListener("click", function(){
 
         // insersion dans le DOM en premiere position
         document.getElementById("contenu").insertBefore(containerElt, document.querySelector(".lien")); 
+        
+        //gestion de l'affichage du message de validation
+        
+
+        
+        
         e.preventDefault();
-        
         //disparition du form
-        form.style.display = "none";
-        //        
-        
+        form.style.display = "none";        
         btnAddLink.style.display = "inline";
+
+        
+        
     });
     
 });
 
 
+    
+//var intervalId = setInterval(showMessage, 2000);
 
 
 
